@@ -1,0 +1,22 @@
+Little J-PAKE Test client that can be used for monitoring:
+
+% ./test.py https://localhost
+X Server   : https://localhost
+X Password : tyddexox
+X receiver.createChannel
+X Channel : zzaa
+X receiver.putMessageOne
+X sender.getMessageOne
+X sender.putMessageOne
+X receiver.getMessageOne
+X receiver.putMessageTwo
+X sender.getMessageTwo
+X sender.putMessageTwo
+X receiver.getMessageTwo
+X receiver.putMessageThree
+X sender.getMessageThree
+X sender.putMessageThree
+X receiver.getMessageThree
+X Key receiver = 002bb3b9c0020ad6a4d38f00229629509ab2eb63725eb2a56812b82359a7ee84
+X Key sender   = 002bb3b9c0020ad6a4d38f00229629509ab2eb63725eb2a56812b82359a7ee84
+
