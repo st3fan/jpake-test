@@ -1,11 +1,10 @@
 
-import os, binascii
+import os, binascii, hmac
 from hashlib import sha256, sha1
 try:
     import json
 except ImportError:
     import simplejson as json
-from M2Crypto.EVP import hmac
 
 class JPAKEError(Exception):
     pass
@@ -370,7 +369,7 @@ class JPAKE:
                    # hashing schemes to get from K to the final key. It's
                    # important to hash K before using it, to not expose the
                    # actual number to anybody.
-        key = hmac("\0"*32, number_to_string(K, self.params.orderlen), algo="sha256")
+        key = hmac.new("\0"*32, number_to_string(K, self.params.orderlen), sha256).digest()
         return key
 
     def getattr_hex(self, name):
