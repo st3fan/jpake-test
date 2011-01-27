@@ -61,31 +61,31 @@ class PAKEClient (object):
     def createChannel(self):
         #print "X %s.createChannel" % self.identity
         (duration, self.channel) = self.get("%s/new_channel" % self.server)
-        print "OK %0.4f %s CREATE" % (duration, self.identity)
+        print "OK %0.4f CREATE" % (duration)
     
     def putMessageOne(self):
         #print "X %s.putMessageOne" % self.identity
         self.message_one = { 'type': '%s1' % self.identity,
                              'payload': self.jpake.one() }
         (duration, self.message_one_etag) = self.put_message(self.message_one)
-        print "OK %.04f %s PUT 1" % (duration, self.identity)
+        print "OK %.04f PUT 1 %s" % (duration, self.identity)
 
     def getMessageOne(self):
         #print "X %s.getMessageOne" % self.identity
         (duration, self.remote_message_one) = self.get_message(self.message_one_etag)        
-        print "OK %0.4f %s GET 1" % (duration, self.identity)
+        print "OK %0.4f GET 1 %s" % (duration, self.identity)
 
     def putMessageTwo(self):
         #print "X %s.putMessageTwo" % self.identity
         self.message_two = { 'type': '%s2' % self.identity,
                              'payload': self.jpake.two(self.remote_message_one['payload']) }
         (duration, self.message_two_etag) = self.put_message(self.message_two)
-        print "OK %0.4f %s PUT 2" % (duration, self.identity)
+        print "OK %0.4f PUT 2 %s" % (duration, self.identity)
 
     def getMessageTwo(self):
         #print "X %s.getMessageTwo" % self.identity
         (duration, self.remote_message_two) = self.get_message(self.message_two_etag)
-        print "OK %0.4f %s GET 2" % (duration, self.identity)
+        print "OK %0.4f GET 2 %s" % (duration, self.identity)
 
     def putMessageThree(self):
         #print "X %s.putMessageThree" % self.identity
@@ -93,12 +93,12 @@ class PAKEClient (object):
         self.message_three = { 'type': '%s3' % self.identity,
                                'payload': sha256(sha256(self.key).digest()).hexdigest() }
         (duration, self.message_three_etag) = self.put_message(self.message_three)
-        print "OK %0.4f %s PUT 3" % (duration, self.identity)
+        print "OK %0.4f PUT 3 %s" % (duration, self.identity)
 
     def getMessageThree(self):
         #print "X %s.getMessageThree" % self.identity
         (duration, self.remote_message_three) = self.get_message(self.message_three_etag)
-        print "OK %0.4f %s GET 1" % (duration, self.identity)
+        print "OK %0.4f GET 1 %s" % (duration, self.identity)
         
 def main():
     
